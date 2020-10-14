@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+@import "assets/styles/theme.scss";
+@import 'assets/styles/mixin.scss';
+@import 'assets/styles/main.scss';
+
+.backcolor
+{
+    background-color: #f8f9fa;
+}

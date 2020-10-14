@@ -1,0 +1,50 @@
+<div class="loader-bg" *ngIf="isLoading">
+  <div class="loader"></div>
+</div>
+
+<div class="container" *ngIf="!isLoading">
+  <div class="row">
+    <div class="col-12 col-md-4 col-lg-3 sidebar">
+      <app-sidebar-filter (chooseFilter)="chooseFilter($event)" (launchCaseFilter)="launchFilter($event)"
+        (landCaseFilter)="landFilter($event)"></app-sidebar-filter>
+    </div>
+    <div class="col-12 col-md-8 col-lg-9 programLists">
+      <div class="row">
+        <div class="col-12 col-xl-3 col-md-4 col-sm-6" *ngFor="let launch of launches">
+          <div class="card">
+            <div class="programBox">
+              <div class="programImg">
+                <img [src]="launch.links.mission_patch" alt="{{launch.mission_name}}" class="img-thumbnail" />
+              </div>
+              <h6 class="primaryColor">{{launch.mission_name}} # {{launch.flight_number}}</h6>
+              <div>
+                <b>Mission Ids:</b>
+                <ul *ngFor="let mid of launch.mission_id">
+                  <li>
+                    <p class="primaryColor">{{mid}}</p>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <b>Launch Year:</b>
+                <span class="primaryColor">{{launch.launch_year}}</span>
+              </div>
+              <div>
+                <b>Successful Launch:</b>
+                <span class="primaryColor">{{launch.launch_success}}</span>
+              </div>
+              <div>
+                <b>Successful Landing:</b>
+                <span class="primaryColor">{{launch.rocket.first_stage.cores[0].land_success}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 no-product text-center" *ngIf="launches && launches.length === 0">
+          <h4>No Launches Found</h4>
+        </div>
+      </div>
+      <app-footer></app-footer>
+    </div>
+  </div>
+</div>
